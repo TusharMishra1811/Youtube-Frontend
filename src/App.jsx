@@ -1,30 +1,36 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { lazy, useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";
+import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Layout from "./Layout.jsx";
 import AuthLayout from "./components/AuthLayout.jsx";
+import ChangePassword from "./components/ChangePassword.jsx";
 import { Login, SignUp } from "./components/index.js";
 import { server } from "./constants/constant.js";
-import HomePage from "./pages/HomePage.jsx";
-import { useDispatch, useSelector } from "react-redux";
 import { setIsAuthenticated, setUser } from "./redux/slice/authSlice.js";
 import HomeSkeleton from "./skeleton/HomeSkeleton.jsx";
-import SearchVideos from "./pages/SearchVideos.jsx";
-import Channnel from "./pages/Channel/Channnel.jsx";
-import ChannelVideos from "./pages/Channel/ChannelVideos.jsx";
-import ChannelPlaylist from "./pages/Channel/ChannelPlaylist.jsx";
-import ChannelTweets from "./pages/Channel/ChannelTweets.jsx";
-import ChannelSubscribers from "./pages/Channel/ChannelSubscribers.jsx";
-import History from "./pages/History.jsx";
-import LikedVideos from "./pages/LikedVideos.jsx";
-import MySubscriptions from "./pages/MySubscriptions.jsx";
-import EditChannel from "./pages/EditChannel.jsx";
-import EditPersonalInfo from "./pages/EditPersonalInfo.jsx";
-import ChangePassword from "./components/ChangePassword.jsx";
-import VideoDetail from "./pages/VideoDetail.jsx";
-import AdminDashboard from "./pages/AdminDashboard.jsx";
+
+const HomePage = lazy(() => import("./pages/HomePage"));
+const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
+const ChannelPlaylist = lazy(() => import("./pages/Channel/ChannelPlaylist.jsx"));
+const ChannelSubscribers = lazy(() =>
+  import("./pages/Channel/ChannelSubscribers.jsx")
+);
+const ChannelTweets = lazy(() =>
+  import("./pages/Channel/ChannelTweets.jsx")
+);
+const ChannelVideos = lazy(() => import("./pages/Channel/ChannelVideos.jsx"));
+const Channnel = lazy(() => import("./pages/Channel/Channnel.jsx"));
+const EditChannel = lazy(() => import("./pages/EditChannel.jsx"));
+const EditPersonalInfo = lazy(() => import("./pages/EditPersonalInfo.jsx"));
+const History = lazy(() => import("./pages/History.jsx"));
+const LikedVideos = lazy(() => import("./pages/LikedVideos.jsx"));
+const MySubscriptions = lazy(() => import("./pages/MySubscriptions.jsx"));
+const SearchVideos = lazy(() => import("./pages/SearchVideos.jsx"));
+const VideoDetail = lazy(() => import("./pages/VideoDetail.jsx"));
+
 
 function App() {
   const dispatch = useDispatch();

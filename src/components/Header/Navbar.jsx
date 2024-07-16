@@ -111,8 +111,8 @@ const Navbar = () => {
                 onClick={setToggleMenu((prev) => !prev)}
               />
             </div>
-            <div>
-              <div>
+            <div className="flex flex-col justify-between h-full py-5 px-3 ">
+              <div className="flex flex-col gap-5">
                 {sidePanelItems.map((item) => (
                   <NavLink
                     to={item.url}

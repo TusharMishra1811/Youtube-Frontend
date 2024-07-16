@@ -25,7 +25,6 @@ const Description = ({
     useState(subscribersCount);
 
   const dispatch = useDispatch();
-  // const [loading, setLoading] = useState(false);
 
   const handleSubscribe = () => {
     dispatch(toggleSubscription(channelId));
@@ -36,25 +35,6 @@ const Description = ({
       setLocalSubscribersCount((prev) => prev + 1);
     }
   };
-
-  // const handleSubscribe = async () => {
-  //   if (loading) return;
-  //   setLoading(true);
-
-  //   try {
-  //     await dispatch(toggleSubscription(channelId)).unwrap();
-  //     setLocalIsSubscribed((prev) => !prev);
-  //     if (localIsSubscribed) {
-  //       setLocalSubscribersCount((prev) => prev - 1);
-  //     } else {
-  //       setLocalSubscribersCount((prev) => prev + 1);
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
 
   return (
     <>
@@ -94,12 +74,12 @@ const Description = ({
                   </p>
                 </div>
               </Link>
-              <div onClick={handleSubscribe}>
+              <div>
                 <Button
                   className="border-slate-500 hover:scale-110 transition-all text-black font-bold px-4 py-1 bg-purple-500"
                   onClick={handleSubscribe}
                 >
-                  {localIsSubscribed ? "Subscribed" : "Subscribe"}
+                  {localIsSubscribed ? "Unsubscribe" : "Subscribe"}
                 </Button>
               </div>
             </div>

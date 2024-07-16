@@ -56,13 +56,11 @@ const publishVideo = createAsyncThunk("/publishvideo", async (data) => {
     withCredentials: true,
   };
 
-  console.log(data);
-
   const myForm = new FormData();
   myForm.append("title", data.title);
   myForm.append("description", data.description);
   myForm.append("videoFile", data.videoFile[0]);
-  myForm.append("thumbnail", data.thumbnail[0]);
+  myForm.append("thumbnail", data.thumbnail);
 
   try {
     const { data } = await axios.post(

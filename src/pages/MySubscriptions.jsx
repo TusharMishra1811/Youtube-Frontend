@@ -8,7 +8,7 @@ import Avatar from "../components/Avatar";
 const MySubscriptions = () => {
   const dispatch = useDispatch();
   const subscriptions = useSelector((state) => state.subscription?.subscribed);
-
+  
   const subscriberId = useSelector((state) => state.auth?.user?._id);
 
   useEffect(() => {
