@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BiSolidDislike, BiSolidLike } from "react-icons/bi";
+import { BiSolidLike } from "react-icons/bi";
 import { useDispatch } from "react-redux";
 import {
   toggleCommentLikes,
@@ -56,7 +56,7 @@ const Like = ({
           className={`cursor-pointer ${localIsLiked ? "text-purple-500" : ""}`}
         />
         <span>{localLikesCount}</span>
-        <BiSolidDislike size={size} />
+        
       </div>
     </>
   );

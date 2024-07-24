@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Button, Input } from "../../components";
-import { IoCloseCircleOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
-import { timeAgo } from "../../utils/convertTime";
-import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
+import { IoCloseCircleOutline } from "react-icons/io5";
+import { useDispatch, useSelector } from "react-redux";
+import { Button, Input } from "../../components";
+import PlaylistCards from "../../components/PlaylistCards";
 import { createPlaylist, getPlaylistByUser } from "../../redux/thunks/playlist";
 
 const ChannelPlaylist = () => {
+  
   const dispatch = useDispatch();
   const playlists = useSelector((state) => state.playlist?.playlists);
   const authId = useSelector((state) => state.auth?.user?._id);
@@ -21,17 +21,20 @@ const ChannelPlaylist = () => {
 
   const [openCreatePlaylist, setOpenCreatePlaylist] = useState(false);
 
+
   useEffect(() => {
     if (userId) {
       dispatch(getPlaylistByUser(userId));
     }
   }, [dispatch, userId]);
 
-  const createAPlaylist = (data) => {
-    dispatch(createPlaylist(data));
+  const createAPlaylist = async (data) => {
+    await dispatch(createPlaylist(data));
+    dispatch(getPlaylistByUser(userId));
     setOpenCreatePlaylist((prev) => !prev);
   };
 
+ 
 
   return (
     <>
@@ -95,33 +98,13 @@ const ChannelPlaylist = () => {
             </div>
           </div>
         )}
-
-        <div className="grid xl:grid-cols-3 md:grid-cols-2 p-2 gap-5 grid-cols-1 w-full mt-5">
-          {playlists?.map((playlist) => (
-            <Link
-              to={`/playlist/${playlist?._id}`}
-              key={playlist?._id}
-              className="relative h-[15rem] w-full border border-slate-500"
-            >
-              <div className="absolute flex justify-between bottom-0 left-0 border-t py-1 px-2 w-full backdrop-contrast-75">
-                <div className="flex flex-col gap-1">
-                  <h1 className="text-lg">Playlist</h1>
-                  <div className="text-xs text-slate-300">
-                    {playlist?.totalViews}
-                    {timeAgo(playlist?.updatedAt)}
-                  </div>
-                </div>
-                <p>{playlist?.videos?.length} Videos</p>
-              </div>
-              <div className="py-1 px-2">
-                <p className="text-sm font-bold">{playlist.name}</p>
-                <p className="text-xs w-full h-4 overflow-hidden">
-                  {playlist.description}
-                </p>
-              </div>
-            </Link>
-          ))}
-        </div>
+        {
+          <div className="grid gap-4 pt-2 sm:grid-cols-[repeat(auto-fit,_minmax(400px,_1fr))]">
+            {playlists?.map((playlist) => (
+              <PlaylistCards playlist={playlist} key={playlist._id} />
+            ))}
+          </div>
+        }
       </div>
     </>
   );

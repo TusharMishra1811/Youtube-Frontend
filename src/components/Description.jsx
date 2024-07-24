@@ -5,6 +5,7 @@ import Like from "./Like";
 import { Link } from "react-router-dom";
 import Button from "./Button";
 import { toggleSubscription } from "../redux/thunks/subscription";
+import AddToPlaylist from "./AddToPlaylist";
 
 const Description = ({
   title,
@@ -56,6 +57,10 @@ const Description = ({
                   likesCount={likesCount}
                   size={25}
                 />
+              </div>
+
+              <div className=" rounded-full w-24 flex justify-center bg-[#222222] py-1">
+                <AddToPlaylist />
               </div>
             </div>
             <div className="flex gap-2 justify-between items-center">

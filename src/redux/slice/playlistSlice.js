@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createPlaylist, getPlaylistByUser } from "../thunks/playlist";
+import {
+  createPlaylist,
+  getPlaylistById,
+  getPlaylistByUser,
+} from "../thunks/playlist";
 
 const initialState = {
   loading: false,
@@ -26,6 +30,13 @@ const playlistSlice = createSlice({
       .addCase(getPlaylistByUser.fulfilled, (state, action) => {
         state.loading = false;
         state.playlists = action.payload;
+      })
+      .addCase(getPlaylistById.pending, (state, action) => {
+        state.loading = true;
+      })
+      .addCase(getPlaylistById.fulfilled, (state, action) => {
+        state.loading = false;
+        state.playlist = action.payload;
       });
   },
 });

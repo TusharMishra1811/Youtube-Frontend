@@ -1,5 +1,5 @@
 import axios from "axios";
-import { lazy, useEffect, useState } from "react";
+import { lazy, useEffect, useState, Suspense } from "react";
 import { Toaster } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
@@ -14,13 +14,13 @@ import HomeSkeleton from "./skeleton/HomeSkeleton.jsx";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
 const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
-const ChannelPlaylist = lazy(() => import("./pages/Channel/ChannelPlaylist.jsx"));
+const ChannelPlaylist = lazy(() =>
+  import("./pages/Channel/ChannelPlaylist.jsx")
+);
 const ChannelSubscribers = lazy(() =>
   import("./pages/Channel/ChannelSubscribers.jsx")
 );
-const ChannelTweets = lazy(() =>
-  import("./pages/Channel/ChannelTweets.jsx")
-);
+const ChannelTweets = lazy(() => import("./pages/Channel/ChannelTweets.jsx"));
 const ChannelVideos = lazy(() => import("./pages/Channel/ChannelVideos.jsx"));
 const Channnel = lazy(() => import("./pages/Channel/Channnel.jsx"));
 const EditChannel = lazy(() => import("./pages/EditChannel.jsx"));
@@ -30,7 +30,7 @@ const LikedVideos = lazy(() => import("./pages/LikedVideos.jsx"));
 const MySubscriptions = lazy(() => import("./pages/MySubscriptions.jsx"));
 const SearchVideos = lazy(() => import("./pages/SearchVideos.jsx"));
 const VideoDetail = lazy(() => import("./pages/VideoDetail.jsx"));
-
+const PlaylistVideos = lazy(() => import("./pages/PlaylistVideos.jsx"));
 
 function App() {
   const dispatch = useDispatch();
@@ -55,7 +55,7 @@ function App() {
   }
 
   return (
-    <>
+    <Suspense fallback={<HomeSkeleton />}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route
@@ -98,6 +98,7 @@ function App() {
                 </AuthLayout>
               }
             />
+
             <Route
               path="tweets"
               element={
@@ -164,6 +165,14 @@ function App() {
               }
             />
           </Route>
+          <Route
+            path="/playlist/:playlistId"
+            element={
+              <AuthLayout authentication>
+                <PlaylistVideos />
+              </AuthLayout>
+            }
+          />
         </Route>
         <Route
           path="/login"
@@ -189,6 +198,7 @@ function App() {
             </AuthLayout>
           }
         />
+
         <Route
           path="/collections"
           element={
@@ -199,7 +209,7 @@ function App() {
         />
       </Routes>
       <Toaster />
-    </>
+    </Suspense>
   );
 }
 
