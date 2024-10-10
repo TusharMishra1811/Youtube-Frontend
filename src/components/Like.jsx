@@ -29,7 +29,6 @@ const Like = ({
     setLocalIsLiked((prev) => !prev);
 
     if (tweetId) {
-      console.log(tweetId);
       dispatch(toggleTweetLikes(tweetId));
     }
 

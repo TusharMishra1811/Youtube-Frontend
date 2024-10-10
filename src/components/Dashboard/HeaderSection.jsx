@@ -14,7 +14,7 @@ const HeaderSection = ({ username, setPopUp }) => {
       </div>
       <div>
         <Button
-          className="text-purple-500 p-2 font-semibold"
+          className="text-white p-2 font-semibold bg-purple-500"
           textColor="text-black"
           onClick={() =>
             setPopUp((prev) => ({

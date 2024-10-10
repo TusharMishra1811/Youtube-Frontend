@@ -81,9 +81,6 @@ const updateVideo = createAsyncThunk(
       withCredentials: true,
     };
 
-    console.log(data);
-
-    console.log(videoId);
 
     const myForm = new FormData();
     myForm.append("title", data?.title);

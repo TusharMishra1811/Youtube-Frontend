@@ -36,7 +36,6 @@ const SignUp = () => {
       const response = await signup(myForm).unwrap();
       dispatch(setIsAuthenticated(true));
       dispatch(setUser(response?.data));
-      console.log(response);
       navigate("/");
       toast.success(`Welcome ${response?.data?.fullName}!!`);
     } catch (error) {

@@ -11,6 +11,7 @@ import Spinner from "../components/Spinner";
 import HeaderSection from "../components/Dashboard/HeaderSection";
 import StatsSection from "../components/Dashboard/StatsSection";
 import VideoTable from "../components/Dashboard/VideoTable";
+import toast from "react-hot-toast";
 
 const AdminDashboard = () => {
   const username = useSelector((state) => state.auth?.user?.username);
@@ -34,6 +35,7 @@ const AdminDashboard = () => {
       ...prev,
       deleteVideo: !prev.deleteVideo,
     }));
+    toast.success("Video is Deleted Successfully!!!");
   };
 
   useEffect(() => {
@@ -57,6 +59,7 @@ const AdminDashboard = () => {
                 title={videoDetails?.title}
                 description={videoDetails?.description}
                 videoId={videoDetails?._id}
+                thumbnail={videoDetails?.thumbnail}
               />
             </div>
           )}

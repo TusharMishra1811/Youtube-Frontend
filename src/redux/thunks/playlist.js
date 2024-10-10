@@ -18,7 +18,6 @@ const createPlaylist = createAsyncThunk(
         { name, description },
         config
       );
-      console.log(data?.data);
       return data?.data;
     } catch (error) {
       throw error;
@@ -72,7 +71,6 @@ const addVideoToPlaylist = createAsyncThunk(
     };
 
     try {
-      console.log(playlistId, videoId);
       const { data } = await axios.patch(
         `${server}/api/v1/playlist/add/${playlistId}/${videoId}`,
         {},
@@ -114,7 +112,6 @@ const deletePlaylist = createAsyncThunk(
     };
 
     try {
-      console.log(playlistId);
       const { data } = await axios.delete(
         `${server}/api/v1/playlist/${playlistId}`,
         config

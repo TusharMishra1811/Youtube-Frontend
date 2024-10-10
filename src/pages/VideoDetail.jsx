@@ -26,7 +26,7 @@ const VideoDetail = () => {
 
   useEffect(() => {
     if (videoId) {
-      dispatch(getVideoById({videoId}));
+      dispatch(getVideoById({ videoId }));
       dispatch(getComment({ videoId }));
     }
     return () => dispatch(cleanUpComments());
@@ -34,12 +34,10 @@ const VideoDetail = () => {
 
   const fetchMoreComments = useCallback(() => {
     if (!loading && hasNextPage) {
-      console.log(videoId);
       dispatch(getComment({ videoId, page: page + 1 }));
       setPage((prev) => prev + 1);
     }
   }, [page, loading, hasNextPage, dispatch, videoId]);
-
 
   return (
     <>

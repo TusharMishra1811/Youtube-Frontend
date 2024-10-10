@@ -8,6 +8,7 @@ import { IoCloseCircleOutline } from "react-icons/io5";
 import GetImagePreview from "./GetImagePreview";
 import Input2 from "./Input2";
 import Button from "./Button";
+import toast from "react-hot-toast";
 
 function EditVideo({
   videoId,
@@ -42,6 +43,7 @@ function EditVideo({
       editVideo: false,
     }));
     dispatch(updateUploadState());
+    toast.success("Video is Updated Successfully!!")
   };
 
   useEffect(() => {
@@ -80,7 +82,7 @@ function EditVideo({
               className="cursor-pointer"
             />
           </div>
-          <div className="p-2 grid lg:grid-cols-2 grid-cols-1 gap-5 z-40">
+          <div className="p-2 grid lg:grid-cols-2 grid-cols-1 gap-5 z-40 ">
             <div>
               <GetImagePreview
                 name={"thumbnail"}

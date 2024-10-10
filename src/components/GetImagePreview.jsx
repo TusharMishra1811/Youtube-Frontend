@@ -17,6 +17,7 @@ const GetImagePreview = ({
 
   const handlePreview = (e, onChange) => {
     const files = e.target.files;
+
     if (files && files[0]) {
       setPreview(URL.createObjectURL(files[0]));
       onChange(files[0]);
@@ -27,15 +28,18 @@ const GetImagePreview = ({
 
   return (
     <>
-      <div>
-        <label>
-          {label && <label>{label}</label>}
+      <div className="w-full">
+        <label
+          className="cursor-pointer relative flex flex-col justify-center items-start"
+          htmlFor={name}
+        >
+          {label && <label className="inline-block mb-2 pl-1">{label}</label>}
 
           <img src={preview || image} className={`object-cover ${className}`} />
           {cameraIcon && !isImageSelected && (
             <FaCamera
               size={cameraSize}
-              className="hover:text-purple-500 absolute inset-0 m-auto text-gray-600"
+              className="hover:text-purple-500 absolute inline-flex justify-center items-center w-full"
             />
           )}
           <Controller

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { togglePublish } from "../redux/thunks/video";
+import toast from "react-hot-toast";
 
 const TogglePublish = ({ videoId, isPublished }) => {
   const [isChecked, setIsChecked] = useState(isPublished);
@@ -13,6 +14,13 @@ const TogglePublish = ({ videoId, isPublished }) => {
   const handleToggle = () => {
     dispatch(togglePublish(videoId));
     setIsChecked((prev) => !prev);
+    toast.success(
+      `${
+        isPublished
+          ? "Video is UnPublished!!"
+          : "Video is Published Successfully"
+      }`
+    );
   };
   return (
     <>
